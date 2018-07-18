@@ -1,0 +1,57 @@
+{
+    "name": "js-ts-starter-kit",
+    "version": "1.0.0",
+    "description": "starter kit",
+    "main": "./dist/index.min.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/",
+        "src/",
+        "tests/"
+    ],
+    "scripts": {
+        "test": "karma start",
+        "prettier": "prettier --config .prettierrc.json --write src/**/*.ts",
+        "prettier-watch": "npx onchange '**/*.js' -- prettier --write {{changed}}",
+        "lint": "tslint -c tslint.json 'src/**/*.ts' 'tests/**/*.spec.ts'",
+        "commit": "git-cz",
+        "doc": "typedoc --out docs/src/ --readme ./README.md",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+        "build": "tsc --p ./ --sourceMap false",
+        "bundle": "uglifyjs ./dist/*.js --compress --mangle --output ./dist/index.min.js",
+        "precommit": "npm run prettier",
+        "prepush": "npm run lint && npm run test",
+        "preversion": "npm run test",
+        "version": "npm run build && npm run bundle && npm run doc && npm run changelog && git add . && git commit -m 'changelogupdate' --no-verify",
+        "postversion": "git add . && git push && git push --tags"
+    },
+    "keywords": [
+        "js",
+        "ts"
+    ],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jasmine": "^2.8.8",
+        "commitizen": "^2.10.1",
+        "conventional-changelog-cli": "^2.0.1",
+        "cz-conventional-changelog": "^2.1.0",
+        "husky": "^0.14.3",
+        "jasmine": "^3.1.0",
+        "karma": "^2.0.4",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-jasmine": "^1.1.2",
+        "karma-typescript": "^3.0.13",
+        "prettier": "^1.13.7",
+        "puppeteer": "^1.6.0",
+        "tslint": "^5.11.0",
+        "typedoc": "^0.11.1",
+        "typescript": "^2.9.2",
+        "uglifyjs": "^2.4.11"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}
