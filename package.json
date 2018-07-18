@@ -1,5 +1,5 @@
 {
-    "name": "js-ts-starter-kit",
+    "name": "ts-starter-kit",
     "version": "1.0.0",
     "description": "starter kit",
     "main": "./dist/index.min.js",
